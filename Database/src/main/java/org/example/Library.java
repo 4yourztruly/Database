@@ -7,6 +7,7 @@ public class Library {
     private final SaveToDatabase saveToDatabase = new SaveToDatabase();
     private final MenuManager menuManager = new MenuManager(this);
     private final CommandManager commandManager = new CommandManager(this);
+    private Account userAccount;
 
     public Library() {
         saveToDatabase.load();
@@ -19,6 +20,14 @@ public class Library {
 
     public MenuManager getMenuManager() {
         return menuManager;
+    }
+
+    public void setUserAccount(String username, String password) {
+        userAccount = new Account(username,password);
+    }
+
+    public Account getUserAccount() {
+        return userAccount;
     }
 
 }

@@ -14,6 +14,8 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter")
 
     implementation("org.postgresql:postgresql:42.7.4")
+    implementation("org.mindrot:jbcrypt:0.4")
+
 }
 
 tasks.test {
