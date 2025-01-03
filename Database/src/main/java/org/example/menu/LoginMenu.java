@@ -6,7 +6,7 @@ import org.mindrot.jbcrypt.BCrypt;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
+import java.util.Optional;
 
 public class LoginMenu extends Menu{
     @Override
@@ -20,14 +20,14 @@ public class LoginMenu extends Menu{
     }
 
     private void loginAccount(String username, String password, Library library) {
-        String databasePassword = null;
+        Optional<String>optionalPassword = Optional.empty();
         try {
             PreparedStatement loginUser = library.getSaveToDatabase().getConnection().prepareStatement("SELECT password FROM users WHERE username = ?");
             loginUser.setString(1, username);
 
             try(ResultSet resultSet = loginUser.executeQuery()) {
                 if(resultSet.next()) {
-                    databasePassword = resultSet.getString("password");
+                    optionalPassword = Optional.of(resultSet.getString("password"));
                 }
             }
         } catch (SQLException e) {
@@ -35,12 +35,13 @@ public class LoginMenu extends Menu{
             return;
         }
 
-        if(databasePassword == null) {
+        if(optionalPassword.isEmpty()) {
             System.out.println("Account not found");
             library.getMenuManager().displayGreetMenu();
+            return;
         }
 
-        boolean passwordCorrect = BCrypt.checkpw(password, databasePassword);
+        boolean passwordCorrect = BCrypt.checkpw(password, optionalPassword.orElse("password missing"));
 
         if(passwordCorrect) {
             System.out.println("Logging you in... ");
