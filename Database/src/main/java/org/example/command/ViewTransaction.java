@@ -2,11 +2,10 @@ package org.example.command;
 
 import org.example.Library;
 
-public class ViewMonth extends Command{
-
+public class ViewTransaction extends Command{
     @Override
     public String getName() {
-        return "vm";
+        return "vt";
     }
 
     @Override
@@ -16,6 +15,6 @@ public class ViewMonth extends Command{
 
     @Override
     public String getDescription() {
-        return "View month";
+        return "View transaction";
     }
 }

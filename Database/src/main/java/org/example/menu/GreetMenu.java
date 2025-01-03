@@ -10,21 +10,26 @@ public class GreetMenu extends Menu{
         String answer = scanner.nextLine();
 
         if(answer.equalsIgnoreCase("login")) {
-            library.getMenuManager().displayLoginMenu();
+            library.getMenuManager().setCurrentMenu(library.getMenuManager().loginMenu());
+            library.getMenuManager().displayCurrentMenu();
         }
 
         else if(answer.equalsIgnoreCase("signup")) {
-            library.getMenuManager().displaySignupMenu();
+            library.getMenuManager().setCurrentMenu(library.getMenuManager().signupMenu());
+            library.getMenuManager().displayCurrentMenu();
         }
 
         else if (answer.equalsIgnoreCase("exit")) {
             System.out.println("Exiting");
+            library.getMenuManager().setNullMenu();
+            library.getMenuManager().displayCurrentMenu();
             library.getSaveToDatabase().save();
         }
 
         else {
             System.out.println("Please enter login, signup or exit");
-            display(library);
+            library.getMenuManager().setCurrentMenu(library.getMenuManager().greetMenu());
+            library.getMenuManager().displayCurrentMenu();
         }
     }
 }

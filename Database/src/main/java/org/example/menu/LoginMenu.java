@@ -37,7 +37,8 @@ public class LoginMenu extends Menu{
 
         if(optionalPassword.isEmpty()) {
             System.out.println("Account not found");
-            library.getMenuManager().displayGreetMenu();
+            library.getMenuManager().setCurrentMenu(library.getMenuManager().greetMenu());
+            library.getMenuManager().displayCurrentMenu();
             return;
         }
 
@@ -46,10 +47,12 @@ public class LoginMenu extends Menu{
         if(passwordCorrect) {
             System.out.println("Logging you in... ");
             library.setUserAccount(username,password);
-            library.getMenuManager().displayMainMenu();
+            library.getMenuManager().setCurrentMenu(library.getMenuManager().mainMenu());
+            library.getMenuManager().displayCurrentMenu();
         } else {
             System.out.println("Wrong credentials!");
-            library.getMenuManager().displayGreetMenu();
+            library.getMenuManager().setCurrentMenu(library.getMenuManager().greetMenu());
+            library.getMenuManager().displayCurrentMenu();
         }
     }
 }

@@ -11,7 +11,7 @@ public class Library {
 
     public Library() {
         saveToDatabase.load();
-        menuManager.displayGreetMenu();
+        menuManager.displayCurrentMenu();
     }
 
     public SaveToDatabase getSaveToDatabase() {
@@ -28,6 +28,10 @@ public class Library {
 
     public Account getUserAccount() {
         return userAccount;
+    }
+
+    public CommandManager getCommandManager() {
+        return commandManager;
     }
 
 }

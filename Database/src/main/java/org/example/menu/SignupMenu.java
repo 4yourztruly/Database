@@ -16,7 +16,8 @@ public class SignupMenu extends Menu{
         String password = scanner.nextLine();
         String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
         createAccount(username,hashedPassword,library);
-        library.getMenuManager().displayGreetMenu();
+        library.getMenuManager().setCurrentMenu(library.getMenuManager().greetMenu());
+        library.getMenuManager().displayCurrentMenu();
 
     }
 
