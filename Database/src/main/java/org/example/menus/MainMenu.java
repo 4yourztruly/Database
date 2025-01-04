@@ -1,7 +1,7 @@
-package org.example.menu;
+package org.example.menus;
 
 import org.example.Library;
-import org.example.command.Command;
+import org.example.commands.Command;
 
 public class MainMenu extends Menu{
     @Override

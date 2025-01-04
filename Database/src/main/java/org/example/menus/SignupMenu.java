@@ -1,4 +1,4 @@
-package org.example.menu;
+package org.example.menus;
 
 import org.example.Account;
 import org.example.Library;

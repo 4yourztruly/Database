@@ -1,7 +1,7 @@
 package org.example;
 
-import org.example.command.CommandManager;
-import org.example.menu.MenuManager;
+import org.example.commands.CommandManager;
+import org.example.menus.MenuManager;
 
 public class Library {
     private final SaveToDatabase saveToDatabase = new SaveToDatabase();

@@ -1,11 +1,9 @@
-package org.example.command;
+package org.example.commands;
 
 import org.example.Library;
 
-import javax.print.MultiDocPrintService;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 
 public class AddTransaction extends Command{
 
