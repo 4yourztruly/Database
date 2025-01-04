@@ -22,8 +22,9 @@ public class Library {
         return menuManager;
     }
 
-    public void setUserAccount(String username, String password) {
+    public void setUserAccount(String username, String password, int id) {
         userAccount = new Account(username,password);
+        userAccount.setId(id);
     }
 
     public Account getUserAccount() {

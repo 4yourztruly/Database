@@ -21,12 +21,14 @@ public class LoginMenu extends Menu{
 
     private void loginAccount(String username, String password, Library library) {
         Optional<String>optionalPassword = Optional.empty();
+        Optional<Integer>optionalId = Optional.empty();
         try {
-            PreparedStatement loginUser = library.getSaveToDatabase().getConnection().prepareStatement("SELECT password FROM users WHERE username = ?");
+            PreparedStatement loginUser = library.getSaveToDatabase().getConnection().prepareStatement("SELECT password, id FROM users WHERE username = ?");
             loginUser.setString(1, username);
 
             try(ResultSet resultSet = loginUser.executeQuery()) {
                 if(resultSet.next()) {
+                    optionalId = Optional.of(resultSet.getInt("id"));
                     optionalPassword = Optional.of(resultSet.getString("password"));
                 }
             }
@@ -46,7 +48,7 @@ public class LoginMenu extends Menu{
 
         if(passwordCorrect) {
             System.out.println("Logging you in... ");
-            library.setUserAccount(username,password);
+            library.setUserAccount(username,password, optionalId.orElse(0));
             library.getMenuManager().setCurrentMenu(library.getMenuManager().mainMenu());
             library.getMenuManager().displayCurrentMenu();
         } else {

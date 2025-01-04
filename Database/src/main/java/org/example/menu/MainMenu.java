@@ -4,7 +4,6 @@ import org.example.Library;
 import org.example.command.Command;
 
 public class MainMenu extends Menu{
-    private boolean running = false;
     @Override
     public void display(Library library) {
             System.out.println("User: " + library.getUserAccount().getUsername() + " | Balance: " + library.getUserAccount().getBalance());

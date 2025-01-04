@@ -6,15 +6,12 @@ public class Account {
     private final String username;
     private final String password;
     private int balance;
+    private int id;
 
     public Account(String username, String password) {
         this.username = username;
         this.password = password;
         this.balance = 0;
-    }
-
-    public void addTransaction() {
-
     }
 
     public String getUsername() {
@@ -27,5 +24,13 @@ public class Account {
 
     public int getBalance() {
         return balance;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
     }
 }
