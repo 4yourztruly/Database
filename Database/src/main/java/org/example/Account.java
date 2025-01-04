@@ -10,7 +10,7 @@ public class Account {
     private final String password;
     private int balance;
     private int id;
-    private Library library;
+    private final Library library;
 
     public Account(String username, String password, Library library) {
         this.username = username;
@@ -49,9 +49,5 @@ public class Account {
 
     public int getId() {
         return id;
-    }
-
-    public void setBalance(int balance) {
-        this.balance += balance;
     }
 }
