@@ -17,7 +17,8 @@ public class ViewTransaction extends Command{
 
     @Override
     public void execute(Library library) {
-        System.out.println("Transaction start");
+        boolean hasResults = false;
+        System.out.println("Transactions");
         try {
             PreparedStatement preparedStatement = library.getSaveToDatabase().getConnection().prepareStatement("SELECT * FROM transactions WHERE user_id = ?");
             preparedStatement.setInt(1, library.getUserAccount().getId());
@@ -25,19 +26,23 @@ public class ViewTransaction extends Command{
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while(resultSet.next()) {
+                hasResults = true;
                 int id = resultSet.getInt("id");
                 String name = resultSet.getString("name");
                 int price = resultSet.getInt("price");
                 String date = resultSet.getString("date");
                 System.out.println("id: " + id + ", " + name + ", " + price + "kr, " + date);
             }
-            System.out.println("Transaction end");
             resultSet.close();
             preparedStatement.close();
 
         } catch (SQLException e) {
             e.printStackTrace();
             return;
+        }
+
+        if(!hasResults) {
+            System.out.println("No transactions found");
         }
 
     }
