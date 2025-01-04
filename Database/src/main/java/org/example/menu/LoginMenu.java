@@ -23,7 +23,7 @@ public class LoginMenu extends Menu{
         Optional<String>optionalPassword = Optional.empty();
         Optional<Integer>optionalId = Optional.empty();
         try {
-            PreparedStatement loginUser = library.getSaveToDatabase().getConnection().prepareStatement("SELECT password, id FROM users WHERE username = ?");
+            PreparedStatement loginUser = library.getSaveToDatabase().getConnection().prepareStatement("SELECT * FROM users WHERE username = ?");
             loginUser.setString(1, username);
 
             try(ResultSet resultSet = loginUser.executeQuery()) {

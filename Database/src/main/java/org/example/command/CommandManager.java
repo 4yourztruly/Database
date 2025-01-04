@@ -20,6 +20,7 @@ public class CommandManager {
     private void setupCommands() {
         commands.add(new AddTransaction());
         commands.add(new RemoveTransaction());
+        commands.add(new ViewTransaction());
         commands.add(new ViewDay());
         commands.add(new ViewWeek());
         commands.add(new ViewMonth());

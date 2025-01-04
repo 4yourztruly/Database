@@ -22,7 +22,7 @@ public class SignupMenu extends Menu{
     }
 
     private void createAccount(String username, String password, Library library) {
-        Account account = new Account(username,password);
+        Account account = new Account(username,password, library);
         try {
             PreparedStatement createAccount = library.getSaveToDatabase().getConnection().prepareStatement("INSERT INTO users (username, password, balance) VALUES (?,?,?) ");
             createAccount.setString(1, username);

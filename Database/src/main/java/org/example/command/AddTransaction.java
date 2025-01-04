@@ -33,8 +33,16 @@ public class AddTransaction extends Command{
             preparedStatement.execute();
             preparedStatement.close();
             System.out.println("Transaction added");
+            library.getUserAccount().setBalance(price);
+            PreparedStatement balanceStatement = library.getSaveToDatabase().getConnection().prepareStatement("UPDATE users SET balance = balance + ? WHERE id = ?");
+            balanceStatement.setInt(1, price);
+            balanceStatement.setInt(2, library.getUserAccount().getId());
+            balanceStatement.execute();
+            balanceStatement.close();
+
             library.getMenuManager().setCurrentMenu(library.getMenuManager().mainMenu());
             library.getMenuManager().displayCurrentMenu();
+
 
         } catch (SQLException e) {
             e.printStackTrace();

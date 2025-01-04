@@ -23,7 +23,7 @@ public class Library {
     }
 
     public void setUserAccount(String username, String password, int id) {
-        userAccount = new Account(username,password);
+        userAccount = new Account(username,password, this);
         userAccount.setId(id);
     }
 
