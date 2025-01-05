@@ -12,7 +12,7 @@ public class MainMenu extends Menu{
     @Override
     public void display(Library library) {
         while(running) {
-            System.out.println("User: " + library.getUserAccount().getUsername() + " | Balance: " + library.getUserAccount().getBalance());
+            System.out.println("User: " + library.getUserAccount().getUsername() + " | Balance: " + library.getUserAccount().getBalance() + "kr");
             System.out.println("Enter a command, type help for list of commands.");
             String input = scanner.nextLine();
 
