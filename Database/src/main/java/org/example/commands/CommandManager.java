@@ -6,10 +6,8 @@ import java.util.ArrayList;
 
 public class CommandManager {
     private final ArrayList<Command>commands = new ArrayList<>();
-    private final Library library;
 
-    public CommandManager(Library library) {
-        this.library = library;
+    public CommandManager() {
         setupCommands();
     }
 
@@ -36,8 +34,7 @@ public class CommandManager {
             public void execute(Library library) {
                 for(Command command : commands) {
                     if(command.getName().equalsIgnoreCase("help")) {
-                        library.getMenuManager().setCurrentMenu(library.getMenuManager().mainMenu());
-                        library.getMenuManager().displayCurrentMenu();
+                        library.getMenuManager().mainMenu();
                         return;
                     }
                     System.out.println(command.getName() + " " + command.getDescription());

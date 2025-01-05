@@ -8,45 +8,28 @@ public class MenuManager {
     private final LoginMenu loginMenu = new LoginMenu();
     private final SignupMenu signupMenu = new SignupMenu();
     private final MainMenu mainMenu = new MainMenu();
-    private Menu currentMenu = greetMenu;
-    private boolean running = true;
 
     public MenuManager(Library library) {
         this.library = library;
     }
 
-    public Menu greetMenu() {
-        return greetMenu;
+    public void greetMenu() {
+        greetMenu.display(library);
     }
 
-    public Menu loginMenu() {
-        return loginMenu;
+    public void loginMenu() {
+        loginMenu.display(library);
     }
 
-    public Menu signupMenu() {
-        return signupMenu;
+    public void signupMenu() {
+        signupMenu.display(library);
     }
 
-    public Menu mainMenu() {
-        return mainMenu;
+    public void mainMenu() {
+        mainMenu.display(library);
     }
 
-    public void setCurrentMenu(Menu menu) {
-        currentMenu = menu;
-    }
-
-    public void setNullMenu() {
-        currentMenu = null;
-    }
-
-    public void displayCurrentMenu() {
-        while(running) {
-            if(currentMenu == null) {
-                running = false;
-                return;
-            }
-            currentMenu.display(library);
-        }
-
+    public void setMainMenuRunning(boolean running) {
+        mainMenu.setRunning(running);
     }
 }

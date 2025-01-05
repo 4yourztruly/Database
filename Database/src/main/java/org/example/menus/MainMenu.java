@@ -4,8 +4,14 @@ import org.example.Library;
 import org.example.commands.Command;
 
 public class MainMenu extends Menu{
+    public boolean running = false;
+
+    public void setRunning(boolean running) {
+        this.running = running;
+    }
     @Override
     public void display(Library library) {
+        while(running) {
             System.out.println("User: " + library.getUserAccount().getUsername() + " | Balance: " + library.getUserAccount().getBalance());
             System.out.println("Enter a command, type help for list of commands.");
             String input = scanner.nextLine();
@@ -13,8 +19,8 @@ public class MainMenu extends Menu{
             for(Command command : library.getCommandManager().getCommands()) {
                 if(input.equalsIgnoreCase("l")) {
                     System.out.println("Exiting...");
-                    library.getMenuManager().setCurrentMenu(library.getMenuManager().greetMenu());
-                    library.getMenuManager().displayCurrentMenu();
+                    setRunning(false);
+                    library.getMenuManager().greetMenu();
                     return;
                 }
 
@@ -22,5 +28,6 @@ public class MainMenu extends Menu{
                     command.execute(library);
                 }
             }
+        }
     }
 }

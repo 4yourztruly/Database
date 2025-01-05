@@ -6,12 +6,12 @@ import org.example.menus.MenuManager;
 public class Library {
     private final SaveToDatabase saveToDatabase = new SaveToDatabase();
     private final MenuManager menuManager = new MenuManager(this);
-    private final CommandManager commandManager = new CommandManager(this);
+    private final CommandManager commandManager = new CommandManager();
     private Account userAccount;
 
     public Library() {
         saveToDatabase.load();
-        menuManager.displayCurrentMenu();
+        menuManager.greetMenu();
     }
 
     public SaveToDatabase getSaveToDatabase() {
