@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.InputMismatchException;
 
 public class ViewMonth extends Command{
 
@@ -19,8 +20,21 @@ public class ViewMonth extends Command{
         boolean hasResult = false;
         int balance = 0;
         System.out.println("Enter a month in 1-12 format, ex 5 or 10: ");
-        int month = scanner.nextInt();
-        scanner.nextLine();
+        int month = 0;
+
+        try {
+            month = scanner.nextInt();
+            scanner.nextLine();
+        } catch (InputMismatchException e) {
+            System.out.println("Please enter a number and not any letters!");
+            scanner.nextLine();
+            return;
+        }
+
+        if(month <= 0 || month > 12) {
+            System.out.println("Please enter a number between 1-12!");
+            return;
+        }
 
         try {
             PreparedStatement preparedStatement = library.getSaveToDatabase().getConnection().prepareStatement("SELECT * FROM transactions WHERE user_id = ? AND EXTRACT(MONTH FROM date) = ?");

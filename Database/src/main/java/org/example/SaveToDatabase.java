@@ -34,7 +34,7 @@ public class SaveToDatabase{
     private void setupTables() {
         try {
             Statement setupTables = connection.createStatement();
-            setupTables.execute("CREATE TABLE IF NOT EXISTS users (id SERIAL PRIMARY KEY, username TEXT UNIQUE NOT NULL, password TEXT NOT NULL, balance INT); CREATE TABLE IF NOT EXISTS transactions (id SERIAL PRIMARY KEY, name TEXT NOT NULL, price INT NOT NULL, date DATE NOT NULL, user_id INT NOT NULL, FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE ON UPDATE CASCADE)");
+            setupTables.execute("CREATE TABLE IF NOT EXISTS users (id SERIAL PRIMARY KEY, username TEXT UNIQUE NOT NULL, password TEXT NOT NULL, balance INT NOT NULL); CREATE TABLE IF NOT EXISTS transactions (id SERIAL PRIMARY KEY, name TEXT NOT NULL, price INT NOT NULL, date DATE NOT NULL, user_id INT NOT NULL, FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE ON UPDATE CASCADE)");
             setupTables.close();
 
         } catch (SQLException e) {

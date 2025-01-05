@@ -5,6 +5,7 @@ import org.example.Library;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.InputMismatchException;
 
 public class ViewWeek extends Command{
 
@@ -17,9 +18,23 @@ public class ViewWeek extends Command{
     public void execute(Library library) {
         boolean hasResult = false;
         int balance = 0;
-        System.out.println("Enter a week in ww format, ex 45: ");
-        int week = scanner.nextInt();
-        scanner.nextLine();
+        System.out.println("Enter a week in 1-53 format, ex 45 or 1: ");
+        int week = 0;
+
+        try {
+            week = scanner.nextInt();
+            scanner.nextLine();
+        } catch (InputMismatchException e) {
+            System.out.println("Please enter a number and not any letters!");
+            scanner.nextLine();
+            return;
+        }
+
+        if(week <= 0 || week > 53) {
+            System.out.println("Please enter a number between 1-53!");
+            return;
+        }
+
 
         try {
             PreparedStatement preparedStatement = library.getSaveToDatabase().getConnection().prepareStatement("SELECT * FROM transactions WHERE user_id = ? AND EXTRACT(WEEK FROM date) = ?");

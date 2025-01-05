@@ -5,6 +5,7 @@ import org.example.Library;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.InputMismatchException;
 
 public class ViewYear extends Command{
 
@@ -18,8 +19,22 @@ public class ViewYear extends Command{
         boolean hasResult = false;
         int balance = 0;
         System.out.println("Enter a year in yyyy format: ");
-        int year = scanner.nextInt();
-        scanner.nextLine();
+        int year = 0;
+
+        try {
+            year = scanner.nextInt();
+            scanner.nextLine();
+        } catch (InputMismatchException e) {
+            System.out.println("Please enter numbers and not any letters!");
+            scanner.nextLine();
+            return;
+        }
+
+        if(year <= 0 || year > 9999) {
+            System.out.println("Please enter a more appropriate year!");
+            return;
+        }
+
 
         try {
             PreparedStatement preparedStatement = library.getSaveToDatabase().getConnection().prepareStatement("SELECT * FROM transactions WHERE user_id = ? AND EXTRACT(YEAR FROM date) = ?");
